@@ -6,7 +6,7 @@ import { addContact } from './redux/actions';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 console.log(store);
-store.dispatch(addContact(5));
+store.dispatch(addContact('ivan', 55535536));
 ReactDOM.render(
   // <React.StrictMode>
   <Provider store={store}>

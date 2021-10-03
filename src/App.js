@@ -1,12 +1,11 @@
 import { connect } from 'react-redux';
-// import { v4 as uuidv4 } from 'uuid';
 import Section from './components/Section';
 import { Notify } from 'notiflix';
 import * as actions from './redux/actions';
 
 Notify.init({ position: 'center-top' });
 
-function App({ contacts, filter = [] }) {
+function App({ contacts, filter = '' }) {
   return (
     <>
       <Section
