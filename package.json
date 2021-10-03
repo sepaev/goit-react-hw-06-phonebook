@@ -16,9 +16,11 @@
     "prettier": "^2.4.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-input-mask": "^2.0.4",
+    "react-input-mask": "^3.0.0-alpha.2",
+    "react-redux": "^7.2.5",
     "react-scripts": "4.0.3",
     "redux": "^4.1.1",
+    "redux-devtools-extension": "^2.13.9",
     "web-vitals": "^1.1.2"
   },
   "scripts": {

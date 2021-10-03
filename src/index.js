@@ -2,16 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import store from './redux/store';
-import { myAction } from './redux/actions';
+import { addContact } from './redux/actions';
 import reportWebVitals from './reportWebVitals';
-
+import { Provider } from 'react-redux';
 console.log(store);
-// console.log(myAction);
-store.dispatch(myAction);
+store.dispatch(addContact(5));
 ReactDOM.render(
-  <React.StrictMode>
+  // <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
+  // </React.StrictMode>,
   document.getElementById('root'),
 );
 
