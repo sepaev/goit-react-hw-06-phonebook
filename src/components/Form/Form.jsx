@@ -1,6 +1,8 @@
 import { FormButton, FormLabel, PhonebookForm } from './Form.styled';
 import PropTypes from 'prop-types';
 import InputMask from 'react-input-mask';
+import { addNewContactToState } from '../../redux/actions';
+import { connect } from 'react-redux';
 import css from './Form.module.css';
 
 function Form({ onSubmit }) {
@@ -38,8 +40,12 @@ function Form({ onSubmit }) {
     </PhonebookForm>
   );
 }
+const mapDispatchToProps = dispatch => ({
+  onSubmit: e => dispatch(addNewContactToState(e)),
+});
 
-export default Form;
 Form.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
+
+export default connect(null, mapDispatchToProps)(Form);

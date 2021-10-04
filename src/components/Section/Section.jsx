@@ -1,11 +1,12 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import Form from '../Form';
-import Contacts from '../Contacts';
+// import Contacts from '../Contacts';
 import { TitleH1, SectionStyle } from './Section.styled';
 import { Notify } from 'notiflix';
-Notify.init({ position: 'center-top' });
+import { connect } from 'react-redux';
 
-function Section({ title, component }) {
+Notify.init({ position: 'center-top' });
+function Section({ title, component, doAddContact }) {
   return (
     <SectionStyle>
       <TitleH1>{title}</TitleH1>
@@ -22,7 +23,26 @@ function Section({ title, component }) {
   );
 }
 
-// function Section({ title, component, searchFunc, deleteFunc, data, doAddContact }) {
+const mapStateToProps = state => {
+  return {
+    // contacts: state.contacts,
+    // filter: state.filter,
+    // newName: state.newName,
+    // newNumber: state.newNumber,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    // doAddContact: (name, number) => dispatch(actions.addContact(name, number)),
+    // doDeleteContact: () => dispatch(actions.deleteContact),
+    // makeSearch: () => dispatch(actions.makeSearch),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Section);
+
+// function Section({ title, component, searchFunc, deleteFunc, data,  }) {
 //   function onSubmit(e) {
 //     e.preventDefault();
 //     const nameRef = e.target.children[0].children[1];
@@ -143,5 +163,3 @@ function Section({ title, component }) {
 //   searchFunc: PropTypes.func,
 //   deleteFunc: PropTypes.func,
 // };
-
-export default Section;

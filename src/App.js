@@ -2,25 +2,33 @@ import { connect } from 'react-redux';
 import Section from './components/Section';
 import { Notify } from 'notiflix';
 import * as actions from './redux/actions';
+import store from './redux/store';
+import { addContact } from './redux/actions';
+
+// //state model
+// const STATE_MODEL = {
+//   contacts: [],
+//   filter: '',
+//   newContact: {
+//     newName: '',
+//     newNumber: '',
+//   },
+// };
 
 Notify.init({ position: 'center-top' });
 
-function App({ contacts, filter = '' }) {
+function App({ contacts, filter = '', newName, newNumber, doAddContact, doDeleteContact, makeSearch }) {
+  // store.dispatch(addContact('ivan', 55535536));
   return (
     <>
-      <Section
-        title='Phonebook'
-        component='Form'
-        data={{ contacts, filter }}
-        // doAddContact={doAddContact}
-      />
+      <Section title='Phonebook' component='Form' data={{ contacts, filter }} doAddContact={doAddContact} />
       <hr />
       <Section
         title='Contacts'
         component='Contacts'
         data={{ contacts, filter }}
-        // searchFunc={makeSearch}
-        // deleteFunc={doDeleteContact}
+        searchFunc={makeSearch}
+        deleteFunc={doDeleteContact}
       />
     </>
   );
@@ -29,13 +37,17 @@ function App({ contacts, filter = '' }) {
 const mapStateToProps = state => {
   return {
     contacts: state.contacts,
+    filter: state.filter,
+    newName: state.newContact.newName,
+    newNumber: state.newContact.newNumber,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    doAddContact: () => dispatch(actions.addContact),
+    doAddContact: (name, number) => dispatch(actions.addContact(name, number)),
     doDeleteContact: () => dispatch(actions.deleteContact),
+    makeSearch: () => dispatch(actions.makeSearch),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(App);

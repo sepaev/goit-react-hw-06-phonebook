@@ -2,11 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import store from './redux/store';
-import { addContact } from './redux/actions';
+
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-console.log(store);
-store.dispatch(addContact('ivan', 55535536));
+
 ReactDOM.render(
   // <React.StrictMode>
   <Provider store={store}>
