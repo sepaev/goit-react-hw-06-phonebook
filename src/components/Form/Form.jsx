@@ -1,7 +1,7 @@
 import { FormButton, FormLabel, PhonebookForm } from './Form.styled';
 import PropTypes from 'prop-types';
 import InputMask from 'react-input-mask';
-import { addNewContactToState } from '../../redux/actions';
+import { addNewContactToState } from '../../redux/actions/newContacts_actions.js';
 import { connect } from 'react-redux';
 import css from './Form.module.css';
 

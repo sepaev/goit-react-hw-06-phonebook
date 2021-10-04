@@ -1,24 +1,25 @@
 // import PropTypes from 'prop-types';
 import Form from '../Form';
-// import Contacts from '../Contacts';
+import Contacts from '../Contacts';
 import { TitleH1, SectionStyle } from './Section.styled';
 import { Notify } from 'notiflix';
 import { connect } from 'react-redux';
 
 Notify.init({ position: 'center-top' });
+
 function Section({ title, component, doAddContact }) {
   return (
     <SectionStyle>
       <TitleH1>{title}</TitleH1>
       {component === 'Form' && <Form onSubmit='onSubmit' />}
-      {/* {component === 'Contacts' && (
+      {component === 'Contacts' && (
         <Contacts
-          // contacts={contacts}
-          // searchFunc={searchFunc}
-          // deleteFunc={deleteFunc}
-          // message={data.length ? 'Sorrry, no contacts found.' : 'Sorrry, you have no contacts yet.'}
+        // contacts={contacts}
+        // searchFunc={searchFunc}
+        // deleteFunc={deleteFunc}
+        // message={data.length ? 'Sorrry, no contacts found.' : 'Sorrry, you have no contacts yet.'}
         />
-      )} */}
+      )}
     </SectionStyle>
   );
 }

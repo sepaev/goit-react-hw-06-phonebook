@@ -2,6 +2,9 @@ import { Fragment } from 'react';
 import Notification from '../Notification';
 import PropTypes from 'prop-types';
 import { ContactsItem, ContactsList, DeleteButton, NumberSpan, SearchInput } from './Contacts.styled';
+import { connect } from 'react-redux';
+import { makeSearch } from '../../redux/actions/filter_actions.js';
+import { deleteContact } from '../../redux/actions/contacts_actions.js';
 
 function Contacts({ contacts, searchFunc, deleteFunc, message }) {
   return (
@@ -19,7 +22,7 @@ function Contacts({ contacts, searchFunc, deleteFunc, message }) {
             {'• ' + name + ': '}
             <NumberSpan>
               {number}
-              <DeleteButton id={id} onClick={() => deleteFunc(id)}>
+              <DeleteButton id={id} onClick={() => deleteFunc(id, contacts)}>
                 X
               </DeleteButton>
             </NumberSpan>
@@ -30,17 +33,25 @@ function Contacts({ contacts, searchFunc, deleteFunc, message }) {
     </Fragment>
   );
 }
-export default Contacts;
 
-Contacts.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.exact({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
-  searchFunc: PropTypes.func.isRequired,
-  deleteFunc: PropTypes.func.isRequired,
-  message: PropTypes.string.isRequired,
-};
+const mapStateToProps = state => ({
+  contacts: state.contacts,
+});
+const mapDispatchToProps = dispatch => ({
+  searchFunc: e => dispatch(makeSearch(e)),
+  deleteFunc: (id, contacts) => dispatch(deleteContact(id, contacts)),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Contacts);
+
+// Contacts.propTypes = {
+//   contacts: PropTypes.arrayOf(
+//     PropTypes.exact({
+//       id: PropTypes.string.isRequired,
+//       name: PropTypes.string.isRequired,
+//       number: PropTypes.string.isRequired,
+//     }),
+//   ).isRequired,
+//   searchFunc: PropTypes.func.isRequired,
+//   deleteFunc: PropTypes.func.isRequired,
+//   message: PropTypes.string.isRequired,
+// };

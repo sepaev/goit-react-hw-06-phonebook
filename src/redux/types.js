@@ -1,6 +1,10 @@
-export const ADD = 'contacts/create';
-export const DELETE = 'contacts/delete';
+const types = {
+  ADD: 'contacts/create',
+  DELETE: 'contacts/delete',
 
-export const CHANGE_FILTER = 'filter/changeFilter';
+  CHANGE_FILTER: 'filter/changeFilter',
 
-export const ADD_NEW_CONTACT = 'newContact/create';
+  ADD_NEW_CONTACT: 'newContact/create',
+  CHECK_NEW_CONTACT: 'newContact/check',
+};
+export default types;
