@@ -3,18 +3,14 @@ import Notification from '../Notification';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { makeSearch } from '../../redux/actions/filter_actions';
-import { deleteContact, addContact } from '../../redux/actions/contacts_actions';
-import { clearNewContactState } from '../../redux/actions/newContacts_actions';
-import checkNewContactInState from '../../redux/functions/checkNewContactInState';
+import { deleteContact } from '../../redux/actions/contacts_actions';
+
 import useFilter from '../../redux/functions/useFilter';
 import { ContactsItem, ContactsList, DeleteButton, NumberSpan, SearchInput } from './Contacts.styled';
 
-function Contacts({ contacts, searchFunc, deleteContact, message, newContact, addContact, clearNewContact, filter }) {
+function Contacts({ contacts, searchFunc, deleteContact, message, filter }) {
   const filterdContacts = useFilter(contacts, filter);
-  if (newContact.name !== '' && checkNewContactInState(newContact, contacts)) {
-    addContact(newContact);
-    clearNewContact();
-  }
+
   return (
     <Fragment>
       <ContactsList>
@@ -46,14 +42,11 @@ function Contacts({ contacts, searchFunc, deleteContact, message, newContact, ad
 const mapStateToProps = state => ({
   contacts: state.contacts,
   message: state.contacts.length ? 'Sorrry, no contacts found.' : 'Sorrry, you have no contacts yet.',
-  newContact: state.newContact,
   filter: state.filter,
 });
 const mapDispatchToProps = dispatch => ({
   searchFunc: e => dispatch(makeSearch(e)),
   deleteContact: (id, contacts) => dispatch(deleteContact(id, contacts)),
-  addContact: newContact => dispatch(addContact(newContact)),
-  clearNewContact: () => dispatch(clearNewContactState()),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Contacts);
 
@@ -68,4 +61,5 @@ Contacts.propTypes = {
   searchFunc: PropTypes.func.isRequired,
   deleteContact: PropTypes.func.isRequired,
   message: PropTypes.string.isRequired,
+  filter: PropTypes.string.isRequired,
 };

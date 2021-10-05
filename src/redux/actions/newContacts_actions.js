@@ -8,7 +8,6 @@ export const addNewContactToState = e => {
   numberRef = e.target.children[1].children[1];
   const inputName = nameRef.value.trim();
   const inputNumber = numberRef.value;
-  nameRef.value = '';
 
   return {
     type: types.ADD_NEW_CONTACT,
