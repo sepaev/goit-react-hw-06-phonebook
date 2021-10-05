@@ -11,15 +11,8 @@ function Section({ title, component, doAddContact }) {
   return (
     <SectionStyle>
       <TitleH1>{title}</TitleH1>
-      {component === 'Form' && <Form onSubmit='onSubmit' />}
-      {component === 'Contacts' && (
-        <Contacts
-        // contacts={contacts}
-        // searchFunc={searchFunc}
-        // deleteFunc={deleteFunc}
-        // message={data.length ? 'Sorrry, no contacts found.' : 'Sorrry, you have no contacts yet.'}
-        />
-      )}
+      {component === 'Form' && <Form />}
+      {component === 'Contacts' && <Contacts />}
     </SectionStyle>
   );
 }
@@ -27,76 +20,18 @@ function Section({ title, component, doAddContact }) {
 const mapStateToProps = state => {
   return {
     // contacts: state.contacts,
-    // filter: state.filter,
-    // newName: state.newName,
-    // newNumber: state.newNumber,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     // doAddContact: (name, number) => dispatch(actions.addContact(name, number)),
-    // doDeleteContact: () => dispatch(actions.deleteContact),
-    // makeSearch: () => dispatch(actions.makeSearch),
   };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Section);
 
-// function Section({ title, component, searchFunc, deleteFunc, data,  }) {
-//   function onSubmit(e) {
-//     e.preventDefault();
-//     const nameRef = e.target.children[0].children[1];
-//     const numberRef = e.target.children[1].children[1];
-//     const inputName = nameRef.value.trim();
-//     const inputNumber = numberRef.value;
-
-//     if (checkNumberExists(inputNumber)) {
-//       if (inputNumber) Notify.warning('Sorry. This NUMBER already exists.');
-//       return;
-//     }
-//     if (checkNameExists(inputName)) {
-//       Notify.warning('Sorry. This NAME already exists.');
-//       return;
-//     }
-
-//     nameRef.value = '';
-//     numberRef.value = '';
-//     doAddContact(inputName, inputNumber);
-//   }
-
-//   function checkNumberExists(inputNumber) {
-//     const clearNumber = doClearNumber(inputNumber);
-//     const contacts = data.contacts;
-//     let result = false;
-//     if (inputNumber === '') result = true;
-//     contacts.forEach(({ number }) => {
-//       if (clearNumber === doClearNumber(number)) result = true;
-//     });
-//     return result;
-//   }
-
-//   function checkNameExists(inputName) {
-//     const contacts = data.contacts;
-//     let result = false;
-//     const clearName = doClearName(inputName);
-//     if (clearName === '') result = true;
-//     contacts.forEach(({ name }) => {
-//       if (clearName === doClearName(name)) result = true;
-//     });
-//     return result;
-//   }
-
-//   function doClearName(name) {
-//     return name.split(' ').join('').toLowerCase().trim();
-//   }
-
-//   function doClearNumber(number) {
-//     const noSpace = number.split(' ').join('');
-//     const noBracket = noSpace.split('(').join('').split(')').join('');
-//     const noSign = noBracket.split('-').join('').split('+').join('');
-//     return noSign;
-//   }
+// function Section({ title, component, searchFunc, deleteContact, data,  }) {
 
 //   function parseSearchQuery(searchQuery) {
 //     let searchQueryText = '';
@@ -114,7 +49,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Section);
 //     return { searchQueryText, searchQueryNumber };
 //   }
 
-//   function getContacts() {
+//   function searchContacts() {
 //     const { filter, contacts } = data;
 //     const { searchQueryText, searchQueryNumber } = parseSearchQuery(filter.toString());
 //     if (searchQueryText.length > 0 || searchQueryNumber.length > 0) {
@@ -152,7 +87,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Section);
 //     return filtredList;
 //   }
 
-//   const contacts = checkForDoubleID(getContacts());
+//   const contacts = checkForDoubleID(searchContacts());
 
 // }
 
@@ -162,5 +97,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(Section);
 //   data: PropTypes.object.isRequired,
 //   doAddContact: PropTypes.func,
 //   searchFunc: PropTypes.func,
-//   deleteFunc: PropTypes.func,
+//   deleteContact: PropTypes.func,
 // };

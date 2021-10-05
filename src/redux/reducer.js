@@ -6,6 +6,7 @@ export const contactsReducer = (state = localContacts ? localContacts : [], { ty
   switch (type) {
     case types.ADD:
       newState = [...state, payload];
+      console.log('newState', newState);
       window.localStorage.setItem('contacts', JSON.stringify(newState));
       return newState;
     case types.DELETE:
@@ -29,6 +30,8 @@ export const filterReducer = (state = '', { type, payload }) => {
 export const newContactReducer = (state = { newName: '', newNumber: '' }, { type, payload }) => {
   switch (type) {
     case types.ADD_NEW_CONTACT:
+      return payload;
+    case types.REMOVE_NEW_CONTACT:
       return payload;
     case types.CHECK_NEW_CONTACT:
       return payload;

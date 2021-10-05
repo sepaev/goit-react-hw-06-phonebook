@@ -2,14 +2,13 @@ import { v4 as uuidv4 } from 'uuid';
 import types from '../types';
 import { Notify } from 'notiflix';
 
-export const addContact = (name, number) => {
-  Notify.success('Well Done! Added ' + name);
+export const addContact = ({ newName, newNumber }) => {
   return {
     type: types.ADD,
     payload: {
       id: uuidv4(),
-      name,
-      number,
+      name: newName,
+      number: newNumber,
     },
   };
 };
