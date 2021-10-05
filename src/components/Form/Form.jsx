@@ -40,6 +40,7 @@ function Form({ onSubmit }) {
     </PhonebookForm>
   );
 }
+
 const mapDispatchToProps = dispatch => ({
   onSubmit: e => dispatch(addNewContactToState(e)),
 });

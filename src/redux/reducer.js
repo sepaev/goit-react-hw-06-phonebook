@@ -6,7 +6,6 @@ export const contactsReducer = (state = localContacts ? localContacts : [], { ty
   switch (type) {
     case types.ADD:
       newState = [...state, payload];
-      console.log('newState', newState);
       window.localStorage.setItem('contacts', JSON.stringify(newState));
       return newState;
     case types.DELETE:
